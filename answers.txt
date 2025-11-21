@@ -1,21 +1,15 @@
-⭐ CSE233 – Operating Systems
-Assignment 2 – Rewritten Answers
-1. Code Examples and Explanations (Lab 5)
+Assignment 2 
+1. Code Examples and Explanations 
 Exercise 1: Using fork() in C — process_creation.c
 
 Code Description:
 This program shows how the fork() system call creates a new process. When fork() is executed, the OS duplicates the current process, resulting in a parent and a child process running simultaneously.
 
 Explanation:
-
 The line pid_t pid = fork(); triggers the creation of a child process.
-
 In the parent process, fork() returns a positive PID indicating the ID of the child.
-
 In the child process, the return value is 0.
-
 If something goes wrong, fork() returns -1.
-
 The if / else if / else structure is used to determine which process is executing the code.
 Both the parent and child continue running from the line immediately after the fork() call, which is why two different outputs appear—one for each process.
 
@@ -27,7 +21,6 @@ file2.c includes the main() function and calls hello(), while the actual impleme
 
 Explanation:
 The Linker is responsible for taking the compiled object files and merging them into a single executable.
-
 Its main responsibilities are:
 
 Symbol Matching:
@@ -44,9 +37,7 @@ This program prints a basic message. The ldd command is used to display which sh
 
 Explanation:
 The Loader (part of the operating system) is in charge of loading the program into memory and preparing it for execution.
-
 Its main tasks include:
-
 Loading the Program:
 The executable produced by the linker is read from disk and placed into memory.
 
@@ -71,7 +62,6 @@ Library Processing:
 Adds required code from libraries either by copying the needed parts directly (static linking) or by setting up references to shared libraries (dynamic linking).
 
 3. What is the job of the Loader?
-
 The Loader is part of the OS that prepares a program to run.
 
 Its main functions include:
