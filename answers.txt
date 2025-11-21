@@ -1,0 +1,92 @@
+⭐ CSE233 – Operating Systems
+Assignment 2 – Rewritten Answers
+1. Code Examples and Explanations (Lab 5)
+Exercise 1: Using fork() in C — process_creation.c
+
+Code Description:
+This program shows how the fork() system call creates a new process. When fork() is executed, the OS duplicates the current process, resulting in a parent and a child process running simultaneously.
+
+Explanation:
+
+The line pid_t pid = fork(); triggers the creation of a child process.
+
+In the parent process, fork() returns a positive PID indicating the ID of the child.
+
+In the child process, the return value is 0.
+
+If something goes wrong, fork() returns -1.
+
+The if / else if / else structure is used to determine which process is executing the code.
+Both the parent and child continue running from the line immediately after the fork() call, which is why two different outputs appear—one for each process.
+
+Exercise 5: Role of the Linker — file1.c and file2.c
+
+Code Description:
+The two source files are compiled individually and later linked together.
+file2.c includes the main() function and calls hello(), while the actual implementation of hello() is located in file1.c.
+
+Explanation:
+The Linker is responsible for taking the compiled object files and merging them into a single executable.
+
+Its main responsibilities are:
+
+Symbol Matching:
+When compiling file2.c, the compiler sees only the declaration void hello(); and assumes the function exists somewhere.
+It is the linker’s job to find the actual function definition in file1.c and connect the call to its correct address.
+
+Relocation:
+It assigns each instruction and data segment a final memory address inside the executable, updating any address-dependent instructions so they point to the correct locations.
+
+Exercise 6: Role of the Loader — simple_program.c
+
+Code Description:
+This program prints a basic message. The ldd command is used to display which shared libraries the executable depends on.
+
+Explanation:
+The Loader (part of the operating system) is in charge of loading the program into memory and preparing it for execution.
+
+Its main tasks include:
+
+Loading the Program:
+The executable produced by the linker is read from disk and placed into memory.
+
+Handling Shared Libraries:
+If the program uses dynamic libraries (such as the C standard library), the loader or dynamic linker locates these libraries, loads them, and links them to the running program.
+
+Runtime Preparation:
+It sets up the stack, initializes memory segments, and then jumps to the program’s entry point to start execution.
+
+2. What is the job of the Linker?
+
+The Linker is a system tool that combines object files and libraries into one final executable.
+Its primary responsibilities are:
+
+Symbol Resolution:
+Connects function calls or variable references in one file to the actual definitions found in another file.
+
+Relocation:
+Determines the final memory layout of the program and adjusts addresses accordingly.
+
+Library Processing:
+Adds required code from libraries either by copying the needed parts directly (static linking) or by setting up references to shared libraries (dynamic linking).
+
+3. What is the job of the Loader?
+
+The Loader is part of the OS that prepares a program to run.
+
+Its main functions include:
+
+Memory Allocation:
+Reserves space in RAM for the program's code, data, stack, and heap.
+
+Loading the Program:
+Transfers the executable from disk into the allocated memory.
+
+Runtime Relocation:
+For position-independent or relocatable code, the loader may adjust addresses so the program runs correctly in memory.
+
+Dynamic Linking:
+Loads shared libraries required by the program and links them at runtime.
+
+Program Initialization:
+Sets up the execution environment and passes control to the program’s entry point (usually before main() runs).
